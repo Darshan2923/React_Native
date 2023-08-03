@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1 class="heading">
+        Clock
+    </h1>
+    <div class="clock">
+        <div class="hour">
+            <div class="hr" id="hr"></div>
+        </div>
+        <div class="minute">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="second">
+            <div class="sc" id="sc"></div>
+        </div>
+    </div>
+
+    <script>
+        // This line says each "tick" on the clock is equal to 6 degrees.
+        const deg = 6;
+
+        // These lines get the clock hands from the HTML page using their IDs.
+        // hr represents the hour hand, mn is the minute hand, and sc is the second hand.
+        const hr = document.getElementById('hr');
+        const mn = document.getElementById('mn');
+        const sc = document.getElementById('sc');
+
+        // This part of the code runs a special function every 1 millisecond (1/1000 of a second).
+        setInterval(() => {
+            // Here, we create a new "day" object that holds the current date and time.
+
+            let day = new Date();
+
+            // Now, we calculate the angles for each clock hand based on the current time.
+
+            // ms (milliseconds) is the angle for the milliseconds hand, but in a magical clock, it's not that important, so we will ignore it.
+            let ms = day.getMilliseconds() * deg;
+
+            // hh (hour hand) angle is calculated by multiplying the current hour by 30 degrees, since there are 12 hours in a clock (30 degrees each).
+            let hh = day.getHours() * 30;
+
+            // mm (minute hand) angle is calculated by multiplying the current minute by 6 degrees, since there are 60 minutes in an hour (6 degrees each).
+            let mm = day.getMinutes() * deg;
+
+            // ss (second hand) angle is calculated by multiplying the current second by 6 degrees and adding the milliseconds (ms) divided by 1000.
+            // The addition of milliseconds makes the second hand move smoothly between the ticks.
+            let ss = day.getSeconds() * deg + ms / 1000;
+
+            // Now, we change the styles of the clock hands to the calculated angles, so they move to the right positions.
+
+            // The hour hand rotates by the hh angle plus a little bit based on the minutes (mm / 12) to account for the fraction of an hour passed.
+            hr.style.transform = `rotateZ(${(hh) + (mm / 12)}deg)`;
+
+            // The minute hand rotates by the mm angle.
+            mn.style.transform = `rotateZ(${mm}deg)`;
+
+            // The second hand rotates by the ss angle.
+            sc.style.transform = `rotateZ(${ss}deg)`;
+
+        }, 1); // The "1" here means we update the clock every 1 millisecond (super fast!).
+    </script>
+
+
+</body>
+
+</html>
