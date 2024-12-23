@@ -22,11 +22,6 @@ This repository documents my journey of learning React Native, a powerful framew
 - **Development Tools**: Expo, React Native CLI
 - **Libraries**: React Navigation, Redux, Axios
 
-## Repository Structure
-- `src/`: Contains app source code.
-- `docs/`: Notes and additional learning materials.
-- `projects/`: Hands-on projects developed during the process.
-
 ## Progress Updates
 Follow my progress and updates as I complete each step of learning React Native. Feedback and suggestions are welcome!
 
