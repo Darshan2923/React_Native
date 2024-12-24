@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import GoalList from './components/GoalList'
 import './App.css'
 import NewGoal from './components/NewGoal'
@@ -21,30 +21,63 @@ import NewGoal from './components/NewGoal'
 
 // // // Below is same as above
 
-class App extends React.Component {
+// class App extends React.Component {
 
-  render() {
+//   render() {
 
-    const addNewGoalHandler = (newGoal) => {
-      courseGoals.push(newGoal);
-      console.log(courseGoals);
-    }
+//     const [courseGoals, setCourseGoals] = useState([
+//       { id: 'cg1', text: 'Finish the course' },
+//       { id: 'cg2', text: 'Learn all about the course main topic' },
+//       { id: 'cg3', text: 'Help other students in the course Q&A' }
+//     ])
 
-    const courseGoals = [
-      // Array of objects
-      { id: 'cg1', text: 'Finish the course' },
-      { id: 'cg2', text: 'Learn all about the course main topic' },
-      { id: 'cg3', text: 'Help other students in the course Q&A' }
-    ]
-    return (
-      <div className='course-goals'>
-        <h2>Course Goals</h2>
-        <GoalList goals={courseGoals} />
-        <NewGoal onAddGoal={addNewGoalHandler} />
+//     const addNewGoalHandler = (newGoal) => {
+//       setCourseGoals((prevCourseGoals) => {
+//         return prevCourseGoals.concat(newGoal);
+//       });
+//       // setCourseGoals(prev=>[...prev,newGoal]);
+//       console.log(courseGoals);
+//     }
 
-      </div>
-    )
-  }
-}
+//     // Does not rerender the components as React ignores it. We use state to tell react to rerender.
+//     // const courseGoals = [
+//     //   // Array of objects
+//     //   { id: 'cg1', text: 'Finish the course' },
+//     //   { id: 'cg2', text: 'Learn all about the course main topic' },
+//     //   { id: 'cg3', text: 'Help other students in the course Q&A' }
+//     // ]
+//     return (
+//       <div className='course-goals'>
+//         <h2>Course Goals</h2>
+//         <GoalList goals={courseGoals} />
+//         <NewGoal onAddGoal={addNewGoalHandler} />
+
+//       </div>
+//     )
+//   }
+// }
+
+const App = () => {
+  const [courseGoals, setCourseGoals] = useState([
+    { id: 'cg1', text: 'Finish the course' },
+    { id: 'cg2', text: 'Learn all about the course main topic' },
+    { id: 'cg3', text: 'Help other students in the course Q&A' },
+  ]);
+
+  const addNewGoalHandler = (newGoal) => {
+    setCourseGoals((prevCourseGoals) => {
+      return prevCourseGoals.concat(newGoal);
+    });
+    console.log(courseGoals);
+  };
+
+  return (
+    <div className='course-goals'>
+      <h2>Course Goals</h2>
+      <GoalList goals={courseGoals} />
+      <NewGoal onAddGoal={addNewGoalHandler} />
+    </div>
+  );
+};
 
 export default App
