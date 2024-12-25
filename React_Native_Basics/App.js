@@ -40,7 +40,7 @@ export default function App() {
       <StatusBar style='light' />
       <View style={styles.appContainer}>
         {/* Pass the required props to GoalInput */}
-        <Button color={'#5e0acc'} title="Add New Goal" onPress={() => { startAddGoalHandler }} />
+        <Button color={'#5e0acc'} title="Add New Goal" onPress={startAddGoalHandler} />
         {modalIsVisible && <GoalInput visible={modalIsVisible} onAddGoalHandler={addGoalHandler} onCancelGoalHandler={endAddGoalHandler} />}
         <View style={styles.goalsContainer}>
 

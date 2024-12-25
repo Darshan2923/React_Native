@@ -1,0 +1,38 @@
+// Handling Errors
+
+Step 1: Look for the error messages in the console or emulator.
+
+Step2: Read the message and read for the stack trace(2nd line of stack trace) for finding where the error is precisely.
+
+Step3: Go to the official doc for that particular component where error is occuring (say <Image/>) and look for correct syntax.
+
+// Logging the console
+
+Step 1: add console log statements in the components to get if they are running
+
+
+
+// Debugging JS remotely
+
+There are various Debugging tools provided by expo
+
+Enter '?' mark in the terminal
+
+Press m or Shift+m To open developer toggle menu and go to debug JS remotely, so you'll open chrome and can see network, log and many dev tools.
+
+// Using React Devtools
+
+npm install react-devtools
+
+On other terminal, open react-devtools and then start 'Debug JS remotely'.
+
+This'll work and connect.
+
+That will open content DOM like tree in Devtools.
+
+And you can manage states and props, it would be useful.
+
+
+// Docs are your best friend
+
+It also hace debugging pages
