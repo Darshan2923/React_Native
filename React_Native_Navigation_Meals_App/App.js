@@ -9,6 +9,7 @@ import MealsDetails from './pages/MealsDetails';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Favourites from './pages/Favourites';
 import { Ionicons } from '@expo/vector-icons';
+import FavouritesContextProvider from './store/context/favourites-context';
 
 
 const Stack = createNativeStackNavigator();
@@ -34,32 +35,34 @@ export default function App() {
   return (
     <>
       <StatusBar style='light' />
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{
-          headerStyle: { backgroundColor: '#351410' },
-          headerTintColor: 'white',
-          contentStyle: { backgroundColor: '#3f2f25' },
-        }}>
-          <Stack.Screen name='Drawer' component={DrawerNavigator} options={{ headerShown: false }} />
-          <Stack.Screen name='MealsCategories' component={CategoriesPage} options={{ title: 'All Categories' }} />
-          <Stack.Screen name='MealsOverview' component={MealsOverviewPage}
-          // options={({route,navigation})=>{
-          //   const catId=route.params.categoryId;
-          //   return {
-          //     title:catId,
-          //   };
-          // }}
-          />
-          <Stack.Screen name='MealsDetails' component={MealsDetails} options={{ title: 'About the meal' }}
-          // options={{
-          //   headerRight:()=>{
-          //     return <Button title='Tap me' onPress={()=>{console.log('Pressed')}}/>
-          //   }
-          // }}
-          />
-        </Stack.Navigator>
-        {/* <CategoriesPage/> */}
-      </NavigationContainer>
+      <FavouritesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: '#351410' },
+            headerTintColor: 'white',
+            contentStyle: { backgroundColor: '#3f2f25' },
+          }}>
+            <Stack.Screen name='Drawer' component={DrawerNavigator} options={{ headerShown: false }} />
+            <Stack.Screen name='MealsCategories' component={CategoriesPage} options={{ title: 'All Categories' }} />
+            <Stack.Screen name='MealsOverview' component={MealsOverviewPage}
+            // options={({route,navigation})=>{
+            //   const catId=route.params.categoryId;
+            //   return {
+            //     title:catId,
+            //   };
+            // }}
+            />
+            <Stack.Screen name='MealsDetails' component={MealsDetails} options={{ title: 'About the meal' }}
+            // options={{
+            //   headerRight:()=>{
+            //     return <Button title='Tap me' onPress={()=>{console.log('Pressed')}}/>
+            //   }
+            // }}
+            />
+          </Stack.Navigator>
+          {/* <CategoriesPage/> */}
+        </NavigationContainer>
+      </FavouritesContextProvider>
     </>
   );
 }

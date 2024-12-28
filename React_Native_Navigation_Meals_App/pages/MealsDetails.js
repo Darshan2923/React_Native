@@ -3,28 +3,37 @@ import { MEALS } from "../data/dummy-data"
 import MealDetailsItem from "../components/MealDetailsItem";
 import SubtitleItem from "../components/SubtitleItem";
 import ListItems from "../components/ListItems";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import IconButton from "../components/IconButton";
+import { FavouritesContext } from "../store/context/favourites-context";
 
 
 const MealsDetails = ({ route, navigation }) => {
+
+    const favouriteMealsCtx = useContext(FavouritesContext);
 
     const mealId = route.params.mealId
 
     const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
-    function headerButtonPressHandler() {
-        console.log('Pressed!');
+    const mealIsFavourite = favouriteMealsCtx.ids.includes(mealId);
+
+    function changeFavouriteStatusHandler() {
+        if (mealIsFavourite) {
+            favouriteMealsCtx.removeFavourite(mealId);
+        } else {
+            favouriteMealsCtx.addFavourite(mealId);
+        }
 
     }
 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                return <IconButton icon="star" color="white" onPress={headerButtonPressHandler} />
+                return <IconButton icon={mealIsFavourite ? "star" : "star-outline"} color="white" onPress={changeFavouriteStatusHandler} />
             }
         })
-    }, [navigation, headerButtonPressHandler]);
+    }, [navigation, changeFavouriteStatusHandler]);
 
     return (
         <ScrollView style={styles.rootContainer}>
@@ -51,7 +60,7 @@ export default MealsDetails;
 
 const styles = StyleSheet.create({
     rootContainer: {
-        marginBottom: 32,
+        marginBottom: 150
     },
     image: {
         width: '100%',
