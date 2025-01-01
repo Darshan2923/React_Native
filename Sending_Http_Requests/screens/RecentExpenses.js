@@ -4,8 +4,13 @@ import ExpensesOutput from '../components/ExpensesOutput/ExpensesOutput';
 import { ExpensesContext } from '../store/expenses-context';
 import { getDateMinusDays } from '../util/date';
 import { fetchExpenses } from '../util/http';
+import LoadingOverlay from '../components/UI/LoadingOverlay';
+import ErrorOverlay from '../components/UI/ErrorOverlay';
 
 function RecentExpenses() {
+    const [isFetching, setIsFetching] = useState(true);
+    const [error, setError] = useState();
+
     const expensesCtx = useContext(ExpensesContext);
     // Will not work as state will not update even if we add, any new data... We can do is do the shit with context only so that we work online and offline simultaneously and reduce calls...
     //See context.js
@@ -13,12 +18,32 @@ function RecentExpenses() {
 
     useEffect(() => {
         async function getExpenses() {
-            const expenses = await fetchExpenses();
+            setIsFetching(true);
+            try {
+
+                const expenses = await fetchExpenses();
+                expensesCtx.setExpenses(expenses);
+                setIsFetching(false);
+            } catch (error) {
+                setError("Could not fetch expenses!");
+                setIsFetching(false);
+            }
             // setFetchedExpenses(expenses);
-            expensesCtx.setExpenses(expenses);
         }
         getExpenses();
     }, []);
+
+    function errorHandler() {
+        setError(null);
+    }
+
+    if (error && !isFetching) {
+        return <ErrorOverlay message={error} onConfirm={errorHandler} />
+    }
+
+    if (isFetching) {
+        return <LoadingOverlay />
+    }
 
     // const recentExpenses = fetchExpenses.filter((expense) => {
     const recentExpenses = expensesCtx.expenses.filter((expense) => {
