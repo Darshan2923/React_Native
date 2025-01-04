@@ -1,3 +1,5 @@
+// This does not work, try to use newer syntax referring the documentation
+
 import * as SQLite from 'expo-sqlite';
 
 import { Place } from '../models/place';
