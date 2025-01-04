@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "React_Native_Navigation_Meals_App",
+    "name": "My Recipe",
     "slug": "React_Native_Navigation_Meals_App",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,21 +9,29 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1.0.0"
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.walnut007.myrecipe"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "29043c0e-5f9c-40ad-be2d-12490700e44e"
+      }
     }
   }
 }
