@@ -1,0 +1,48 @@
+Key Points for Configuring and Publishing an Expo App with EAS
+Expo Application Services (EAS):
+
+Use EAS for building your app in the cloud and submitting it to app stores directly.
+Explore EAS documentation for detailed configuration and optimization.
+app.json File:
+
+Purpose: Central configuration file for Expo-managed React Native apps.
+Key Settings:
+name: Name of the app displayed in the Expo Go app and on user devices.
+slug: Unique identifier for the project.
+version: User-facing app version, visible in app stores. Follow semantic versioning (e.g., 1.0.0).
+Platform-Specific:
+iOS (buildNumber): String in format 1.0.0 for App Store's internal version tracking.
+Android (versionCode): Positive integer (e.g., 1, 2) for Google Play's versioning.
+Platform-Specific Settings:
+
+Orientation: Lock app orientation (e.g., portrait mode).
+Icons and Splash Screens: Add custom app icons and splash screens for branding.
+Updates:
+
+Expo allows publishing updates without releasing a new app version on app stores. Configure this as needed.
+Versioning Guidelines:
+
+User-Facing Version (version): Communicates changes to users (e.g., major update 2.0, minor update 1.1).
+Internal Versions: Ensure iOS buildNumber and Android versionCode are incremented with each update to avoid conflicts in app stores.
+Documentation:
+
+Always refer to the official app.json API Reference for detailed explanations of configuration options.
+Next Steps:
+
+Work on app branding elements like icons and splash screens.
+Dive into EAS setup for seamless app building and deployment.
+Explore advanced settings for specific features or custom behaviors.
+
+
+########Configuring Android Apps
+As shown earlier in the course (when adding native modules to non-Expo apps), you can manage certain aspects of your Android app with the AndroidManifest.xml file.
+
+There, you can configure three important things:
+
+- The App name as it appears on the home screen: https://stackoverflow.com/questions/5443304/how-to-change-an-android-apps-name
+
+- The bundle identifier & package name of the app (also requires tweaking in other files): https://developer.android.com/studio/build/application-id
+
+- The permissions of the app: https://developer.android.com/guide/topics/manifest/manifest-intro#perms
+
+You should also set an app version and change it with every app update. This is done in the build.gradle file, see: https://developer.android.com/studio/publish/versioning
