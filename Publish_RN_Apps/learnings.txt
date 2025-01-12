@@ -46,3 +46,5 @@ There, you can configure three important things:
 - The permissions of the app: https://developer.android.com/guide/topics/manifest/manifest-intro#perms
 
 You should also set an app version and change it with every app update. This is done in the build.gradle file, see: https://developer.android.com/studio/publish/versioning
+
+For rest reference, we can go through the part mentioned in further sections
