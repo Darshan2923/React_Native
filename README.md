@@ -1,4 +1,4 @@
-# Learning React Native
+#  React Native
 
 This repository documents my journey of learning React Native, a powerful framework for building mobile apps for iOS and Android. It covers the fundamentals and advanced concepts of React Native development.
 
