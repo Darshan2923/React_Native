@@ -2,7 +2,7 @@
 
 This repository documents my journey of learning React Native, a powerful framework for building mobile apps for iOS and Android. It covers the fundamentals and advanced concepts of React Native development.
 
-## Highlights
+## Highlights of the repo
 - **Introduction to React Native**: Understanding the basics and setting up the environment.
 - **Core Components and APIs**: Utilizing components like View, Text, Button, and ScrollView.
 - **Navigation**: Implementing navigation using React Navigation.
