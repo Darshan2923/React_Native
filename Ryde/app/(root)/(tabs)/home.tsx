@@ -2,10 +2,13 @@ import GoogleTextInput from '@/components/GoogleTextInput';
 import Map from '@/components/Map';
 import RideCard from '@/components/RideCard'
 import { icons, images } from '@/constants';
+import { useLocationStore } from '@/store';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import * as Location from 'expo-location'
 
 const recentRides = [
     {
@@ -107,9 +110,12 @@ const recentRides = [
 ]
 
 export default function Page() {
+    const { setUserLocation, setDestinationLocation } = useLocationStore();
     const { user } = useUser();
     const { signOut } = useAuth();
-    const loading = false;
+    const loading = true;
+
+    const [hasPermissions, setHasPermissions] = useState(false);
 
     const handleSignOut = () => {
         signOut();
@@ -119,6 +125,34 @@ export default function Page() {
     const handleDestinationPress = () => {
 
     }
+
+    useEffect(() => {
+        const requestLocation = async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+
+            if (status !== 'granted') {
+                setHasPermissions(false);
+                return;
+            }
+
+
+            let location = await Location.getCurrentPositionAsync();
+            const address = await Location.reverseGeocodeAsync({
+                latitude: location.coords?.latitude!,
+                longitude: location.coords?.longitude!,
+            });
+
+            setUserLocation({
+                // latitude: location.coords.latitude,
+                // longitude: location.coords.longitude,
+                latitude: 37.78825,
+                longitude: -122.4324,
+                address: `${address[0].name}, ${address[0].region}`
+            });
+        };
+
+        requestLocation();
+    }, [])
 
 
 
